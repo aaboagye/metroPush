@@ -8,13 +8,13 @@
     var nav = WinJS.Navigation;
     var sched = WinJS.Utilities.Scheduler;
     var ui = WinJS.UI;
+    var appSettings = Windows.Storage.ApplicationData.current.roamingSettings;
 
     app.addEventListener("activated", function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
                 // TODO: This application has been newly launched. Initialize
                 // your application here.
-                var appSettings = Windows.Storage.ApplicationData.current.roamingSettings;
             } else {
                 // TODO: This application has been reactivated from suspension.
                 // Restore application state here.
@@ -24,6 +24,9 @@
 
             nav.history = app.sessionState.history || {};
             nav.history.current.initialPlaceholder = true;
+            if (appSettings.values["hasToken"] == true) {
+                nav.navigate("/pages/landing/landing.html");
+            }
 
             // Optimize the load of the application and while the splash screen is shown, execute high priority scheduled work.
             ui.disableAnimations();
@@ -46,25 +49,6 @@
         // suspended, call args.setPromise().
         app.sessionState.history = nav.history;
     };
-
-    //var app = WinJS.Application;
-    //var activation = Windows.ApplicationModel.Activation;
-
-    //app.onactivated = function (args) {
-    //    if (args.detail.kind === activation.ActivationKind.launch) {
-    //        if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
-    //            // TODO: This application has been newly launched. Initialize
-    //            // your application here.
-    //            var appSettings = Windows.Storage.ApplicationData.current.roamingSettings;
-    //        } else {
-    //            // TODO: This application has been reactivated from suspension.
-    //            // Restore application state here.
-    //            var field = document.getElementById("token");
-    //            field.innerText = Windows.Storage.ApplicationData.current.roamingSettings.values["userToken"];
-    //        }
-    //        args.setPromise(WinJS.UI.processAll());
-    //    }
-    //};
 
     app.start();
 })();
