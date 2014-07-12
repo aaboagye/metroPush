@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>MAGNESIUM</Machine>
+    <WindowsUser>Aseda</WindowsUser>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>42ade9d8-12ae-4d2d-8a6c-23fb37d91001</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\bld\Debug\</IntermediateOutputPath>
+    <RegisteredManifestChecksum>529457E31A452C58B126D5E03094FE93AB8C68255FBA64FE4844CC9F451EA8BC</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>42ade9d8-12ae-4d2d-8a6c-23fb37d91001_1.0.0.0_neutral__qskbk8njw8mjt</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>42ade9d8-12ae-4d2d-8a6c-23fb37d91001_qskbk8njw8mjt!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>42ade9d8-12ae-4d2d-8a6c-23fb37d91001</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Aseda</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-06-29T19:18:30.992</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\default.html">
+      <PackagePath>default.html</PackagePath>
+      <Modified>2014-06-28T03:03:29.408</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\landing.html">
+      <PackagePath>landing.html</PackagePath>
+      <Modified>2014-06-29T19:17:32.717</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\images\logo.scale-100.png">
+      <PackagePath>images\logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-03-14T09:11:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\images\smalllogo.scale-100.png">
+      <PackagePath>images\smalllogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-03-14T09:11:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\images\splashscreen.scale-100.png">
+      <PackagePath>images\splashscreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-03-14T09:11:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\images\storelogo.scale-100.png">
+      <PackagePath>images\storelogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-03-14T09:11:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\js\default.js">
+      <PackagePath>js\default.js</PackagePath>
+      <Modified>2014-06-29T19:48:10.385</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\landing.js">
+      <PackagePath>landing.js</PackagePath>
+      <Modified>2014-06-29T19:17:32.554</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+      <Modified>2014-06-27T05:45:05.677</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\landing.css">
+      <PackagePath>landing.css</PackagePath>
+      <Modified>2014-06-29T19:17:32.769</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Aseda\OneDrive\Documents\Code\metroPush\metroPush\bin\Debug\ReverseMap\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2014-06-29T19:18:30.945</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.WinJS.2.0\1.0\">
+      <Name>Microsoft.WinJS.2.0</Name>
+      <Version>1.0.9600.16408</Version>
+      <Architecture>Neutral</Architecture>
+      <FrameworkIdentity>Name=Microsoft.WinJS.2.0, MinVersion=1.0.9600.16408</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.WinJS.2.0\1.0\Microsoft.WinJS.2.0.appx</AppxLocation>
+      <MoreInfo>http://go.microsoft.com/fwlink/%3fLinkId=260891</MoreInfo>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>
