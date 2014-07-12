@@ -62,9 +62,13 @@
     <Content Include="images\storelogo.scale-100.png" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
-    <Content Include="landing.css" />
-    <Content Include="landing.html" />
-    <Content Include="landing.js" />
+    <Content Include="js\navigator.js" />
+    <Content Include="pages\landing\landing.css" />
+    <Content Include="pages\landing\landing.html" />
+    <Content Include="pages\landing\landing.js" />
+    <Content Include="pages\login\login.css" />
+    <Content Include="pages\login\login.html" />
+    <Content Include="pages\login\login.js" />
     <Content Include="TODO.txt" />
     <None Include="metroPush_TemporaryKey.pfx" />
   </ItemGroup>

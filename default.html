@@ -12,13 +12,9 @@
     <!-- metroPush references -->
     <link href="/css/default.css" rel="stylesheet" />
     <script src="/js/default.js"></script>
+    <script src="/js/navigator.js"></script>
 </head>
 <body>
-    <h1 id="greeting" class="header">Sign into Pushbullet</h1>
-    <input type="button" id="loginButton" value="Sign In" />
-    <div id="results">
-        <h2>Extracted Token</h2>
-        <p id="token"></p>
-    </div>
+    <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/login/login.html' }"></div>
 </body>
 </html>
