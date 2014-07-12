@@ -11,6 +11,7 @@
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
                 // TODO: This application has been newly launched. Initialize
                 // your application here.
+                var appSettings = Windows.Storage.ApplicationData.current.roamingSettings;
             } else {
                 // TODO: This application has been reactivated from suspension.
                 // Restore application state here.
@@ -22,9 +23,10 @@
             var loggedIn = Windows.Storage.ApplicationData.current.roamingSettings.values["hasToken"];
             if (null != loginButtonRun)
                 loginButtonRun.addEventListener("click", loginHandler, false);
-            if (loggedIn == false) {
-                
+            if (loggedIn != true) {
+                loginHandler();
             }
+            WinJS.Navigation.navigate("/landing.html", {});
         }
     };
 
@@ -59,7 +61,6 @@
                         if (fragment.indexOf("#access_token=") != -1) {
                             var token = fragment.substring(
                                 new String("#access_token=").length);
-                            userToken = token;
 
                             /* Let's store the token */
                             var appData = Windows.Storage.ApplicationData.current;
@@ -68,7 +69,7 @@
                             roamingSettings.values["hasToken"] = true;
                         }
                         // API calls here.
-                        WinJS.Navigation.navigate("landing.html");
+                        WinJS.Navigation.navigate("/landing.html");
                         break;
 
                     case Windows.Security.Authentication.Web.WebAuthenticationStatus.userCancel:
@@ -89,7 +90,7 @@
 
             }
         );
-
+        WinJS.Navigation.navigate("/landing.html", {});
     }
 
     app.start();

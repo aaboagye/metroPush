@@ -1,0 +1,3 @@
+﻿* Make landing page to display registered pushbullet devices
+* perhaps also show recent pushes.
+* option to create a new push

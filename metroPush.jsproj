@@ -65,6 +65,7 @@
     <Content Include="landing.css" />
     <Content Include="landing.html" />
     <Content Include="landing.js" />
+    <Content Include="TODO.txt" />
     <None Include="metroPush_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
