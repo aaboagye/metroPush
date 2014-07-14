@@ -40,3 +40,6 @@ Icon
 **/bin/
 **/Debug/
 **bld/
+bin/
+Debug/
+bld/
