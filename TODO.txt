@@ -1,3 +1,4 @@
-﻿* Make landing page to display registered pushbullet devices
+﻿* Make landing page to display registered pushbullet devices & friends
 * perhaps also show recent pushes.
 * option to create a new push
+	- I'd also like for it to be able to use the share charm at some point.
