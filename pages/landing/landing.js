@@ -14,15 +14,14 @@
                 function (response) {
                     var json = JSON.parse(response.responseText);
                     var list = new WinJS.Binding.List(json.devices);
-                    var text = WinJS.Utilities.query("#test")[0];
-                    text.innerHTML = list.getItem(0).data.nickname;
+                    //var text = WinJS.Utilities.query("#test")[0];
+                    //text.innerHTML = list.getItem(0).data.nickname;
+                    for (var i = 0; i < list.length; i++) {
+                        addDevice("devices-list", list.getItem(i).data.nickname);
+                    }
                 },
                 function (error) {},
                 function (progress) {});
-
-            var Oldlist = document.getElementById("devices-list").innerHTML;
-            var newList = "<li>Nexus 5</li>";
-            Oldlist = Oldlist + newList;
         },
 
         unload: function () {
@@ -36,17 +35,10 @@
         }
     });
 
-    function getDevices() {
-        var token = Windows.Storage.ApplicationData.current.roamingSettings.values["token"];
-        var deviceRequestURI = new Uri("https://" + token + "api.pushbullet.com/v2/devices");
-        var httpClient = new Windows.Web.Http.HttpClient();
-
-        httpClient.getStringAsync(deviceRequestURI).done(function (response) {
-
-        }, onError);
-
-        function onError(reason) {
-            // details in reason.Message and ex.HResult
-        }
+    function addDevice(list, device) {
+        var list = document.getElementById(list);
+        var li = document.createElement("li");
+        li.innerHTML = device;
+        list.appendChild(li);
     }
 })();
