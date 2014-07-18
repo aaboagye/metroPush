@@ -24,6 +24,11 @@
                     var lv = new WinJS.UI.ListView(deviceDiv);
                     lv.itemDataSource = deviceList.dataSource;
                     lv.itemTemplate = deviceListTemplate;
+                    lv.layout = WinJS.UI.ListLayout;
+                    lv.itemsDraggable = false;
+                    lv.selectionMode = WinJS.UI.SelectionMode.single;
+                    lv.tapBehavior = WinJS.UI.TapBehavior.directSelect;
+                    lv.swipeBehavior = WinJS.UI.SwipeBehavior.none;
                 },
                 function (error) {},
                 function (progress) {});
@@ -52,10 +57,15 @@
     function deviceListTemplate(itemPromise) {
         return itemPromise.then(function (item) {
             var div = document.createElement("div");
-
+            div.setAttribute("class", "device-list-item");
+            // TODO: Add another div here for the icons
+            var nameDiv = document.createElement("div");
+            nameDiv.setAttribute("class", "device-name");
             var name = document.createElement("h3");
             name.innerText = item.data.nickname;
-            div.appendChild(name);
+            name.setAttribute("class", "device-title");
+            nameDiv.appendChild(name);
+            div.appendChild(nameDiv);
 
             return div;
         });
