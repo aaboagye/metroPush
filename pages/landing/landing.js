@@ -59,12 +59,32 @@
             var div = document.createElement("div");
             div.setAttribute("class", "device-list-item");
             // TODO: Add another div here for the icons
+            var iconDiv = document.createElement("div");
+            iconDiv.setAttribute("class", "device-icon");
+            var icon = document.createElement("img");
+            icon.setAttribute("src", "#");
+            icon.setAttribute("style", "width: 60px; height: 60px;");
+            switch (item.data.type){
+                case "chrome":
+                    icon.src = "/images/chrome_icon.png";
+                    break;
+
+                case "windows":
+                    icon.src = "/images/windows_icon.png";
+                    break;
+
+                case "android":
+                    icon.src = "/images/smartphone_icon.png";
+                    break;
+            }
+            iconDiv.appendChild(icon);
             var nameDiv = document.createElement("div");
             nameDiv.setAttribute("class", "device-name");
             var name = document.createElement("h3");
             name.innerText = item.data.nickname;
             name.setAttribute("class", "device-title");
             nameDiv.appendChild(name);
+            div.appendChild(iconDiv);
             div.appendChild(nameDiv);
 
             return div;
