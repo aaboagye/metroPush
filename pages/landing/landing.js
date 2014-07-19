@@ -3,6 +3,7 @@
 (function () {
     "use strict";
     var deviceList;
+    var lv;
     var publicMembers = {
         itemList: deviceList
     };
@@ -21,7 +22,7 @@
                     deviceList = new WinJS.Binding.List(json.devices);
    
                     var deviceDiv = document.getElementById("devices");
-                    var lv = new WinJS.UI.ListView(deviceDiv);
+                    lv = new WinJS.UI.ListView(deviceDiv);
                     lv.itemDataSource = deviceList.dataSource;
                     lv.itemTemplate = deviceListTemplate;
                     lv.layout = WinJS.UI.ListLayout;
@@ -29,6 +30,7 @@
                     lv.selectionMode = WinJS.UI.SelectionMode.single;
                     lv.tapBehavior = WinJS.UI.TapBehavior.directSelect;
                     lv.swipeBehavior = WinJS.UI.SwipeBehavior.none;
+                    lv.addEventListener("selectionchanged", updateToField);
                 },
                 function (error) {},
                 function (progress) {});
@@ -40,11 +42,17 @@
 
         updateLayout: function (element) {
             /// <param name="element" domElement="true" />
-
             // TODO: Respond to changes in layout.
         }
 
     });
+
+    function updateToField(element) {
+        var toField = document.getElementById("to-field");
+        var index = lv.selection.getItems().then(function (items) {
+            toField.innerText = items[0].data.nickname;
+        });
+    }
 
     function addDevice(list, device) {
         var list = document.getElementById(list);
@@ -58,7 +66,6 @@
         return itemPromise.then(function (item) {
             var div = document.createElement("div");
             div.setAttribute("class", "device-list-item");
-            // TODO: Add another div here for the icons
             var iconDiv = document.createElement("div");
             iconDiv.setAttribute("class", "device-icon");
             var icon = document.createElement("img");

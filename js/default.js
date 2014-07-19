@@ -18,8 +18,6 @@
             } else {
                 // TODO: This application has been reactivated from suspension.
                 // Restore application state here.
-                var field = document.getElementById("token");
-                field.innerText = Windows.Storage.ApplicationData.current.roamingSettings.values["userToken"];
             }
 
             nav.history = app.sessionState.history || {};
