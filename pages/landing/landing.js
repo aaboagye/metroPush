@@ -25,7 +25,7 @@
                     lv = new WinJS.UI.ListView(deviceDiv);
                     lv.itemDataSource = deviceList.dataSource;
                     lv.itemTemplate = deviceListTemplate;
-                    lv.layout = WinJS.UI.ListLayout;
+                    lv.layout = new WinJS.UI.ListLayout();
                     lv.itemsDraggable = false;
                     lv.selectionMode = WinJS.UI.SelectionMode.single;
                     lv.tapBehavior = WinJS.UI.TapBehavior.directSelect;
@@ -52,14 +52,6 @@
         var index = lv.selection.getItems().then(function (items) {
             toField.innerText = items[0].data.nickname;
         });
-    }
-
-    function addDevice(list, device) {
-        var list = document.getElementById(list);
-        var li = document.createElement("li");
-        li.innerHTML = device;
-        li.setAttribute("class", "device");
-        list.appendChild(li);
     }
 
     function deviceListTemplate(itemPromise) {

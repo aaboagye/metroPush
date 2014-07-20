@@ -31,22 +31,43 @@
 	height: 100%;
 }
 
-#pushInfoDiv {
+/*#pushInfoDiv {
 	float: left;
-}
-#devices {
+}*/
+/*#devices {
     width: 25%;
     height: 100%;
 	float: left;
+}*/
+
+#devicesListDiv {
+    display: -ms-grid;
+    -ms-grid-columns: 260px max-content;
+    -ms-grid-rows: auto 64px;
+}
+
+#devicesListDiv .win-listview {
+    height: 800px;
+}
+
+#devices {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+}
+
+#pushInfoDiv {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
 }
 
 #devices .device-list-item {
-    width: 282px;
+    width: 280px;
     height: 70px;
     padding: 5px;
     overflow: hidden;
     display: -ms-grid;
 }
+
 #devices h3 {
     text-align: center;
     vertical-align: middle;
@@ -62,4 +83,13 @@
     position: absolute;
     margin-left: 75px;
     margin-top: 25px;
+}
+
+#title-text {
+    width: 551px;
+}
+
+#message-div textarea {
+    height: 400px;
+    width: 526px;
 }
