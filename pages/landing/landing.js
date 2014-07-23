@@ -33,7 +33,18 @@
                     lv.addEventListener("selectionchanged", updateToField);
                 },
                 function (error) {},
-                function (progress) {});
+                function (progress) { });
+
+            var linkButton = document.getElementById("linkpush");
+            var textButton = document.getElementById("textpush");
+            var fileButton = document.getElementById("filepush");
+            var listButton = document.getElementById("listpush");
+            var locButton = document.getElementById("locpush");
+
+            linkButton.addEventListener("click", changeFormToLink);
+            textButton.addEventListener("click", changeFormToText);
+            //listButton.addEventListener("click", changeFormToList);
+            locButton.addEventListener("click", changeFormToLoc)
         },
 
         unload: function () {
@@ -46,6 +57,27 @@
         }
 
     });
+
+    function changeFormToLink() {
+        var title = document.getElementById("title-text");
+        title.placeholder = "Link Title";
+        var message = document.getElementById("message-text");
+        message.innerText = "http://www.example.com";
+    }
+
+    function changeFormToText() {
+        var title = document.getElementById("title-text");
+        title.placeholder = "Title";
+        var message = document.getElementById("message-text");
+        message.innerText = "Message";
+    }
+
+    function changeFormToLoc() {
+        var title = document.getElementById("title-text");
+        title.placeholder = "Name";
+        var message = document.getElementById("message-text");
+        message.innerText = "Street address, place, or name of location";
+    }
 
     function updateToField(element) {
         var toField = document.getElementById("to-field");
