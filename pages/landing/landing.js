@@ -95,6 +95,7 @@
 
                 var file_label = document.getElementById("title-text");
                 file_label.setAttribute("data-win-bind", "innerText: path");
+                file_label.disabled = true;
                 var pushInfo = document.getElementById("pushInfoDiv");
                 WinJS.Binding.processAll(pushInfo, fileObject);
             }
@@ -120,21 +121,42 @@
     function changeFormToLink() {
         var title = document.getElementById("title-text");
         title.placeholder = "Link Title";
+        title.disabled = false;
         var message = document.getElementById("message-text");
+        if (message == null) {
+            var parent = document.getElementById("message-div");
+            message = document.createElement("textarea");
+            message.setAttribute("id", "message-text");
+            parent.appendChild(message);
+        }
         message.innerText = "http://www.example.com";
     }
 
     function changeFormToText() {
         var title = document.getElementById("title-text");
         title.placeholder = "Title";
+        title.disabled = false;
         var message = document.getElementById("message-text");
+        if (message == null) {
+            var parent = document.getElementById("message-div");
+            message = document.createElement("textarea");
+            message.setAttribute("id", "message-text");
+            parent.appendChild(message);
+        }
         message.innerText = "Message";
     }
 
     function changeFormToLoc() {
         var title = document.getElementById("title-text");
         title.placeholder = "Name";
+        title.disabled = false;
         var message = document.getElementById("message-text");
+        if (message == null) {
+            var parent = document.getElementById("message-div");
+            message = document.createElement("textarea");
+            message.setAttribute("id", "message-text");
+            parent.appendChild(message);
+        }
         message.innerText = "Street address, place, or name of location";
     }
 
