@@ -8,7 +8,17 @@
         itemList: deviceList
     };
     WinJS.Namespace.define("DataExample", publicMembers);
-    WinJS.UI.Pages.define("/pages/landing/landing.html", {
+
+    // Store info about selected file.
+    var fileObject =
+    {
+        src: null,
+        name: null,
+        path: null,
+        displayName: null
+    };
+
+   var landingPage = WinJS.UI.Pages.define("/pages/landing/landing.html", {
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
@@ -44,7 +54,8 @@
             linkButton.addEventListener("click", changeFormToLink);
             textButton.addEventListener("click", changeFormToText);
             //listButton.addEventListener("click", changeFormToList);
-            locButton.addEventListener("click", changeFormToLoc)
+            locButton.addEventListener("click", changeFormToLoc);
+            fileButton.addEventListener("click", fileSelectClickHandler);
         },
 
         unload: function () {
@@ -54,10 +65,58 @@
         updateLayout: function (element) {
             /// <param name="element" domElement="true" />
             // TODO: Respond to changes in layout.
+        },
+
+        fileSelectClickHandler: function (eventInfo) {
+            var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
+            openPicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
+            openPicker.viewMode = Windows.Storage.Pickers.PickerViewMode.thumbnail;
+
+            openPicker.fileTypeFilter.clear();
+            openPicker.pickSingleFileAsync().done(
+                landingPage.prototype.changeFormToFile,
+                landingPage.prototype.fileSelectError);
+        },
+
+        changeFormToFile: function(file) {
+            if (file) {
+                fileObject.name = file.name;
+                fileObject.path = file.path;
+                fileObject.displayName = file.displayName;
+
+                var fileBlob = URL.createObjectURL(file, { oneTimeOnly: true });
+                fileObject.src = fileBlob;
+
+                var msg = document.getElementById("message-text");
+                if (msg != null) {
+                    msg.parentNode.removeChild(msg);
+                    //pushInfo.appendChild(file_label);
+                }
+
+                var file_label = document.getElementById("title-text");
+                file_label.setAttribute("data-win-bind", "innerText: path");
+                var pushInfo = document.getElementById("pushInfoDiv");
+                WinJS.Binding.processAll(pushInfo, fileObject);
+            }
+        },
+
+        fileSelectError: function (error) {
+            console.log("unable to select file");
+            // TODO: pop-up
         }
 
     });
 
+    function fileSelectClickHandler (eventInfo) {
+        var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
+        openPicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
+        openPicker.viewMode = Windows.Storage.Pickers.PickerViewMode.thumbnail;
+
+        openPicker.fileTypeFilter.replaceAll(["*"]);
+        openPicker.pickSingleFileAsync().done(
+            landingPage.prototype.changeFormToFile,
+            landingPage.prototype.fileSelectError);
+    }
     function changeFormToLink() {
         var title = document.getElementById("title-text");
         title.placeholder = "Link Title";
