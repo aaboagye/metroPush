@@ -18,12 +18,13 @@
         displayName: null
     };
 
+    var pushType = "note"; // First type of push is a note by default.
+
    var landingPage = WinJS.UI.Pages.define("/pages/landing/landing.html", {
         // This function is called whenever a user navigates to this page. It
         // populates the page elements with the app's data.
         ready: function (element, options) {
             // TODO: Initialize the page here.
-            // TODO: Get list of devices
             var token = Windows.Storage.ApplicationData.current.roamingSettings.values["userToken"];
 
             WinJS.xhr({ user: token, password: "", url: "https://api.pushbullet.com/v2/devices", responseType: "json", type: "get" }).then(
@@ -50,12 +51,14 @@
             var fileButton = document.getElementById("filepush");
             var listButton = document.getElementById("listpush");
             var locButton = document.getElementById("locpush");
+            var pushButton = document.getElementById("submitButton");
 
             linkButton.addEventListener("click", changeFormToLink);
             textButton.addEventListener("click", changeFormToText);
             //listButton.addEventListener("click", changeFormToList);
             locButton.addEventListener("click", changeFormToLoc);
             fileButton.addEventListener("click", fileSelectClickHandler);
+            pushButton.addEventListener("click", pushHandler);
         },
 
         unload: function () {
@@ -98,6 +101,8 @@
                 file_label.disabled = true;
                 var pushInfo = document.getElementById("pushInfoDiv");
                 WinJS.Binding.processAll(pushInfo, fileObject);
+                /* TODO: For file you have to do something different. */
+                pushType = "file";
             }
         },
 
@@ -108,7 +113,59 @@
 
     });
 
-    function fileSelectClickHandler (eventInfo) {
+   function pushHandler(eventInfo) {
+       // TODO: need to pull the device_iden from the nickname. Otherwise it just goes out to all devices.
+       var token = Windows.Storage.ApplicationData.current.roamingSettings.values["userToken"];
+       var url = "https://api.pushbullet.com/v2/pushes";
+       var data;
+
+       switch (pushType) {
+           case "note":
+               // TODO: Title isn't working
+               var title = document.getElementById("title-text").innerHTML;
+               var body = document.getElementById("message-text").innerText;
+               data = {
+                   type: pushType,
+                   title: title,
+                   body: body
+               }
+               break;
+
+           case "link":
+               break;
+
+           case "address":
+               break;
+
+           case "list":
+               break;
+
+           case "file":
+               break;
+       }
+
+       WinJS.xhr({
+           user: token,
+           url: url,
+           type: "POST",
+           responseType: "json",
+           data: JSON.stringify(data),
+           headers: {
+               "Content-Type": "application/json"
+           }
+       }).then(
+                function (response) {
+                    var json = JSON.parse(response.responseText);
+                    console.log(json);
+                },
+                function (error) {
+                    console.log("error performing push");
+                    console.log(error);},
+                function (progress) { });
+   }
+
+   function fileSelectClickHandler(eventInfo) {
+       // TODO: Limit files selected to respect file size limit.
         var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
         openPicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
         openPicker.viewMode = Windows.Storage.Pickers.PickerViewMode.thumbnail;
@@ -117,7 +174,8 @@
         openPicker.pickSingleFileAsync().done(
             landingPage.prototype.changeFormToFile,
             landingPage.prototype.fileSelectError);
-    }
+   }
+
     function changeFormToLink() {
         var title = document.getElementById("title-text");
         title.placeholder = "Link Title";
@@ -130,6 +188,7 @@
             parent.appendChild(message);
         }
         message.innerText = "http://www.example.com";
+        pushType = "link";
     }
 
     function changeFormToText() {
@@ -144,6 +203,7 @@
             parent.appendChild(message);
         }
         message.innerText = "Message";
+        pushType = "note";
     }
 
     function changeFormToLoc() {
@@ -158,6 +218,7 @@
             parent.appendChild(message);
         }
         message.innerText = "Street address, place, or name of location";
+        pushType = "address";
     }
 
     function updateToField(element) {
